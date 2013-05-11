@@ -32,5 +32,5 @@ http.createServer(function (request, response) {
     });
 
 }).listen(8080, function () {
-    console.log('Access \"Game\" at http://localhost:8080/index.html');
+    console.log('Access Boids simulation at http://localhost:8080/index.html');
 });
