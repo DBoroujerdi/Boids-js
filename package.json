@@ -1,0 +1,17 @@
+{
+  "author": "Daniel Boroujerdi <daniel.boroujerdi@gmail.com>",
+  "name": "basic canvas game",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "main": "app.js",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
