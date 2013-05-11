@@ -1,6 +1,6 @@
 {
   "author": "Daniel Boroujerdi <daniel.boroujerdi@gmail.com>",
-  "name": "basic canvas game",
+  "name": "boids simulation",
   "version": "0.0.1",
   "repository": {
     "type": "git",
