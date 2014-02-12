@@ -7,7 +7,7 @@ function init() {
     context = canvas.getContext("2d");
     context.font = "11px Arial";
 
-    sineDot = new Dot(0, canvas.height / 2, 1);
+    sineDot = new Dot(0, canvas.height / 2, 0.2);
     sineDot.render();
 
     loop();
@@ -29,15 +29,10 @@ Dot.prototype.move = function(delta) {
 	// move back to other side of the canvas
 	this.x = canvas.width - this.x;
     }
-    var siny = Math.sin(this.x);
-    var zeroLine = canvas.height / 2;
-    if (siny === 0) {
-	this.y = canvas.height / 2;
-    } else if (siny > 0) {
-	this.y = zeroLine + (canvas.height / 2) * siny;
-    } else {
-	this.y = zeroLine - (canvas.height / 2) * Math.abs(siny);
-    }
+    
+    var sinx = (this.x / canvas.width) * (2 * Math.PI);
+    var siny = Math.sin(sinx);
+    this.y = canvas.height * (siny + 1) / 2;
 };
 
 function loop(fps) {
