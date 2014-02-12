@@ -36,6 +36,7 @@ function loop(fps) {
     var interval = 1000 / fps;
     var timePrevious = timeNow;
     var fpsTime = 0;
+    var fpsCount = 0;
     var fps = 0;
     
     setInterval(function() {
@@ -45,19 +46,19 @@ function loop(fps) {
 	var delta = timeNow - timePrevious;
 
 	fpsTime = fpsTime + delta;
-	fps++;
+	fpsCount++;
 
 	if (fpsTime >= 1000) {
-	    // context.fillText("FPS: " + fps, canvas.width - 30, canvas.height - 30);
-	    console.log("FPS: " + fps);
+	    fps = fpsCount;
 	    fpsTime = 0;
-	    fps = 0;
+	    fpsCount = 0;
 	}
 
 	timePrevious = new Date().getTime();
 
 	update(delta);
 	render();
+	context.fillText("FPS: " + fps, 30, canvas.height - 30);
 
     }, interval);
 };
