@@ -7,7 +7,7 @@ function init() {
     context = canvas.getContext("2d");
     context.font = "11px Arial";
 
-    sineDot = new Dot(0, canvas.height / 2, 5);
+    sineDot = new Dot(0, canvas.height / 2, 0.2);
     sineDot.render();
 
     loop();
