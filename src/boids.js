@@ -24,27 +24,39 @@ Dot.prototype.render = function() {
 };
 
 Dot.prototype.move = function(delta) {
-    console.log("delta: " + delta);
     this.x = this.x + (this.v * delta);
     if (this.x > canvas.width) {
 	// move back to other side of the canvas
 	this.x = canvas.width - this.x;
     }
-    console.log("moved to " + this.x);
 };
 
 function loop(fps) {
     var timeNow = new Date().getTime();
     var interval = 1000 / fps;
-    var delta = timeNow;
+    var timePrevious = timeNow;
+    var fpsTime = 0;
+    var fps = 0;
     
     setInterval(function() {
 
-	update(new Date().getTime() - delta);
-	delta = new Date().getTime();
+	timeNow = new Date().getTime();
+	
+	var delta = timeNow - timePrevious;
 
-	//context.fillText("FPS: " + fps, canvas.width - 30, canvas.height - 30);
+	fpsTime = fpsTime + delta;
+	fps++;
 
+	if (fpsTime >= 1000) {
+	    // context.fillText("FPS: " + fps, canvas.width - 30, canvas.height - 30);
+	    console.log("FPS: " + fps);
+	    fpsTime = 0;
+	    fps = 0;
+	}
+
+	timePrevious = new Date().getTime();
+
+	update(delta);
 	render();
 
     }, interval);
