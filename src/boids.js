@@ -1,21 +1,61 @@
-
-var canvasWidth = -1;
-var canvasHeight = -1;
-
+var canvas;
 var context;
+var sineDot;
 
 function init() {
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
-    canvasWidth = canvas.width
-    canvasHeight = canvas.height;
-    draw();
+    context.font = "11px Arial";
+
+    sineDot = new Dot(0, canvas.height / 2, 5);
+    sineDot.render();
+
+    loop();
 };
 
-function draw() {
-    context.fillStyle = "rgb(200,0,0)";
-    context.fillRect (10, 10, 55, 50);
- 
-    context.fillStyle = "rgba(0, 0, 200, 0.5)"; 
-    context.fillRect (30, 30, 55, 50);
+function Dot(x, y , v) {
+    this.x = x;
+    this.y = y;
+    this.v = v;
+};
+
+Dot.prototype.render = function() {
+    context.fillRect(this.x, this.y, 5, 5);
+};
+
+Dot.prototype.move = function(delta) {
+    console.log("delta: " + delta);
+    this.x = this.x + (this.v * delta);
+    if (this.x > canvas.width) {
+	// move back to other side of the canvas
+	this.x = canvas.width - this.x;
+    }
+    console.log("moved to " + this.x);
+};
+
+function loop(fps) {
+    var timeNow = new Date().getTime();
+    var interval = 1000 / fps;
+    var delta = timeNow;
+    
+    setInterval(function() {
+
+	update(new Date().getTime() - delta);
+	delta = new Date().getTime();
+
+	//context.fillText("FPS: " + fps, canvas.width - 30, canvas.height - 30);
+
+	render();
+
+    }, interval);
+};
+
+function update(delta) {
+    sineDot.move(delta);
+};
+
+function render() {
+    // clear canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    sineDot.render();
 };
