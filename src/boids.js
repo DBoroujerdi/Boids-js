@@ -14,25 +14,25 @@ function init() {
 };
 
 function Dot(x, y , v) {
-    this.x = x;
-    this.y = y;
-    this.v = v;
+    this.posx = x;
+    this.posy = y;
+    this.velocity = v;
 };
 
 Dot.prototype.render = function() {
-    context.fillRect(this.x, this.y, 5, 5);
+    context.fillRect(this.posx, this.posy, 5, 5);
 };
 
 Dot.prototype.move = function(delta) {
-    this.x = this.x + (this.v * delta);
-    if (this.x > canvas.width) {
+    this.posx = this.posx + (this.velocity * delta);
+    if (this.posx > canvas.width) {
 	// move back to other side of the canvas
-	this.x = canvas.width - this.x;
+	this.posx = canvas.width - this.posx;
     }
     
-    var sinx = (this.x / canvas.width) * (2 * Math.PI);
-    var siny = Math.sin(sinx);
-    this.y = canvas.height * (siny + 1) / 2;
+    var x = (this.posx / canvas.width) * (2 * Math.PI);
+    var y = Math.sin(x);
+    this.posy = canvas.height * (y + 1) / 2;
 };
 
 function loop(fps) {
