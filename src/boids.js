@@ -1,14 +1,14 @@
 var canvas;
 var context;
-var sineDot;
+var dot;
 
 function init() {
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
     context.font = "11px Arial";
 
-    sineDot = new Dot(0, canvas.height / 2, 0.2);
-    sineDot.render();
+    dot = new Dot(0, canvas.height / 2, 0.2);
+    dot.render();
 
     loop();
 };
@@ -68,11 +68,11 @@ function loop(fps) {
 };
 
 function update(delta) {
-    sineDot.move(delta);
+    dot.move(delta);
 };
 
 function render() {
     // clear canvas
     context.clearRect(0, 0, canvas.width, canvas.height);
-    sineDot.render();
+    dot.render();
 };
